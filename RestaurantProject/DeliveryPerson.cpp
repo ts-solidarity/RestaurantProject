@@ -1,5 +1,7 @@
 #include <iostream>
 #include "DeliveryPerson.h"
+#include "Restaurant.h"
+
 
 DeliveryPerson::DeliveryPerson(int userId, const std::string& userName, const std::string& userEmail, Restaurant* restaurant)
 	: Employee(userId, userName, userEmail, restaurant)
@@ -14,7 +16,9 @@ DeliveryPerson::~DeliveryPerson()
 
 void DeliveryPerson::DisplayInfo() const
 {
-
+	User::DisplayInfo();
+	std::cout << "Affiliated restaurant: " << GetRestaurant()->GetRestaurantName() << std::endl;
+	std::cout << "Status: Delivery person" << std::endl;
 }
 
 Order* DeliveryPerson::GetCurrentOrder() const

@@ -47,6 +47,9 @@
     <ClInclude Include="Order.h">
       <Filter>Business</Filter>
     </ClInclude>
+    <ClInclude Include="System.h">
+      <Filter>Business</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="Main.cpp">
@@ -80,6 +83,9 @@
       <Filter>People</Filter>
     </ClCompile>
     <ClCompile Include="Restaurant.cpp">
+      <Filter>Business</Filter>
+    </ClCompile>
+    <ClCompile Include="System.cpp">
       <Filter>Business</Filter>
     </ClCompile>
   </ItemGroup>

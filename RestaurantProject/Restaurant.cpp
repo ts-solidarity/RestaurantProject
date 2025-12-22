@@ -340,3 +340,20 @@ void Restaurant::SetManager(Manager* manager)
 {
     m_Manager = manager;
 }
+
+void Restaurant::SetDeliveryPeople(DeliveryPerson** deliveryPeople, int deliveryPeopleCount)
+{
+    if (deliveryPeople == nullptr)
+        return;
+
+    delete[] m_DeliveryPeople;
+	m_DeliveryPeople = new DeliveryPerson * [deliveryPeopleCount];
+
+    for (int i = 0; i < deliveryPeopleCount; i++)
+    {
+        m_DeliveryPeople[i] = deliveryPeople[i];
+		m_DeliveryPeople[i]->SetRestaurant(this);
+    }
+    
+    m_DeliveryPeopleCount = deliveryPeopleCount;
+}

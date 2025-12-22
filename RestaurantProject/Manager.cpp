@@ -1,3 +1,4 @@
+#include <iostream>
 #include "Manager.h"
 #include "Restaurant.h"
 
@@ -14,7 +15,9 @@ Manager::~Manager()
 
 void Manager::DisplayInfo() const
 {
-
+	User::DisplayInfo();
+	std::cout << "Affiliated restaurant: " << GetRestaurant()->GetRestaurantName() << std::endl;
+	std::cout << "Status: Manager" << std::endl;
 }
 
 void Manager::HireDeliveryPerson(DeliveryPerson* employee)

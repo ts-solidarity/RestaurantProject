@@ -12,11 +12,11 @@ public:
 	~Employee();
 	
 	virtual void DisplayInfo() const override = 0;
+	virtual bool IsOrderComplete() const;
 	
 	Restaurant* GetRestaurant() const;
 	void SetRestaurant(Restaurant* restaurant);
 
-	virtual bool IsOrderComplete() const = 0;
 
 private:
 

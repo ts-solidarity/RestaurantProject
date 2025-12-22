@@ -20,6 +20,7 @@ public:
 
 	void SetRestaurantName(const std::string& restaurantName);
 	void SetManager(Manager* manager);
+	void SetDeliveryPeople(DeliveryPerson** deliveryPeople, int deliveryPeopleCount);
 
 	void AddMenuItem(const MenuItem& menuItem);
 	void DeleteMenuItem(const MenuItem& menuItem);
