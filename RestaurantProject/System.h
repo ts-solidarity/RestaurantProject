@@ -24,6 +24,13 @@ public:
 	void RestaurantManager(Restaurant* restaurant, Manager* manager);
 	void RestaurantDeliveryPerson(Restaurant* restaurant, DeliveryPerson* deliveryPerson);
 
+	void AddRestaurant(Restaurant* restaurant);
+	void DeleteRestaurant(Restaurant* restaurant);
+
+	void AddCustomer(Customer* customer);
+	void DeleteCustomer(Customer* customer);
+
+	void BuildMarket();
 
 private:
 
@@ -33,10 +40,26 @@ private:
 	Restaurant** m_Restaurants;
 	int m_RestaurantCount;
 
+	Customer** m_Customers;
+	int m_CustomerCount;
+
 
 private:
 	// constant values to produce different custom objects
 	
+	const std::string m_RestaurantNames[10] = {
+		"Nusret",
+		"HD Iskender",
+		"Kofteci Yusuf",
+		"La Pierre",
+		"Klassje",
+		"Harrier Du Bois",
+		"Itoyia",
+		"Katlempas",
+		"Ekrem Doner",
+		"ASPAVA"
+	};
+
 	const std::string m_Names[10] = {
 		"Alice", 
 		"Max",

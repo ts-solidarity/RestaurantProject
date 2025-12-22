@@ -21,3 +21,9 @@ void Employee::SetRestaurant(Restaurant* restaurant)
 {
 	m_Restaurant = restaurant;
 }
+
+bool Employee::IsOrderComplete() const
+{
+	return false;
+}
+

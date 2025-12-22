@@ -16,7 +16,7 @@ Customer::~Customer()
 
 Order* Customer::CreateOrder(Restaurant* restaurant)
 {
-    Order* newOrder = new Order{this, restaurant->GetAvailableDeliveryPerson(), restaurant};
+    Order* newOrder = restaurant->CreateOrder(this);
     Order** newOrders = new Order * [m_OrderCount + 1];
 
     for (int i = 0; i < m_OrderCount; i++)

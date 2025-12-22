@@ -182,9 +182,9 @@ void Restaurant::DeleteEmployee(DeliveryPerson* employee)
     m_DeliveryPeople = newEmployees;
 }
 
-Order* Restaurant::AddOrder(Customer* customer, DeliveryPerson* deliveryPerson)
+Order* Restaurant::CreateOrder(Customer* customer)
 {
-    Order* newOrder = new Order{customer, deliveryPerson, this};
+    Order* newOrder = new Order{customer, GetAvailableDeliveryPerson(), this};
     Order** newOrders = new Order * [m_OrderCount + 1];
 
     for (int i = 0; i < m_OrderCount; i++)
@@ -296,6 +296,36 @@ Order* Restaurant::GetOrderByIndex(int index) const
     return m_Orders[index];
 }
 
+void Restaurant::DisplayMenu() const
+{
+    for (int i = 0; i < m_MenuCount; i++)
+    {
+        m_Menu[i]->ShowItem();
+	}
+}
+
+MenuItem* Restaurant::GetMenuItemById(int itemId) const
+{
+    for (int i = 0; i < m_MenuCount; i++)
+    {
+        if (m_Menu[i]->GetItemId() == itemId)
+        {
+            return m_Menu[i];
+        }
+    }
+
+    return nullptr;
+}
+
+MenuItem* Restaurant::GetMenuItemByIndex(int itemIndex) const
+{
+    if (itemIndex < 0 || itemIndex >= m_MenuCount)
+    {
+        return nullptr;
+    }
+	return m_Menu[itemIndex];
+}
+
 void Restaurant::AddItemToOrder(const MenuItem& item, Order* order)
 {
     order->AddItem(item);
@@ -327,6 +357,11 @@ DeliveryPerson* Restaurant::GetAvailableDeliveryPerson() const
             deliveryPerson = m_DeliveryPeople[i];
         }
     }
+
+    if (deliveryPerson == nullptr && m_DeliveryPeopleCount > 0)
+    {
+        deliveryPerson = m_DeliveryPeople[0];
+	}   
 
     return deliveryPerson;
 }

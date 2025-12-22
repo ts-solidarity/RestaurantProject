@@ -28,13 +28,17 @@ public:
 	void AddEmployee(DeliveryPerson* employee);
 	void DeleteEmployee(DeliveryPerson* employee);
 
-	Order* AddOrder(Customer* customer, DeliveryPerson* deliveryPerson);
+	Order* CreateOrder(Customer* customer);
 	void DeleteOrder(Order* order);
 	void RemoveOrder(Order* order);
 	void AddItemToOrder(const MenuItem& item, Order* order);
 	void DeleteItemFromOrder(const MenuItem& item, Order* order);
 	Order* GetLatestOrder() const;
 	Order* GetOrderByIndex(int index) const;
+
+	void DisplayMenu() const;
+	MenuItem* GetMenuItemById(int itemId) const;
+	MenuItem* GetMenuItemByIndex(int itemIndex) const;
 
 private:
 	

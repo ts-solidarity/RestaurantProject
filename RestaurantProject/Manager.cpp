@@ -39,3 +39,8 @@ void Manager::DeleteMenuItem(const MenuItem& menuItem)
 {
 	GetRestaurant()->DeleteMenuItem(menuItem);
 }
+
+bool Manager::IsOrderComplete() const
+{
+	return false;
+}

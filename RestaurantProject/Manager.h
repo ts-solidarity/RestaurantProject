@@ -20,6 +20,7 @@ public:
 	void AddMenuItem(const MenuItem& menuItem);
 	void DeleteMenuItem(const MenuItem& menuItem);
 
+	bool IsOrderComplete() const override;
 
 private:
 
