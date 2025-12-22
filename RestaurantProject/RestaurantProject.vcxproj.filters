@@ -1,0 +1,86 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <ItemGroup>
+    <Filter Include="Items">
+      <UniqueIdentifier>{b7d253a5-6601-4ee2-aafe-f1536d82b5be}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Program">
+      <UniqueIdentifier>{4FC737F1-C7A5-4376-A066-2A32D752A2FF}</UniqueIdentifier>
+      <Extensions>cpp;c;cc;cxx;c++;cppm;ixx;def;odl;idl;hpj;bat;asm;asmx</Extensions>
+    </Filter>
+    <Filter Include="People">
+      <UniqueIdentifier>{93995380-89BD-4b04-88EB-625FBE52EBFB}</UniqueIdentifier>
+      <Extensions>h;hh;hpp;hxx;h++;hm;inl;inc;ipp;xsd</Extensions>
+    </Filter>
+    <Filter Include="Business">
+      <UniqueIdentifier>{d1c52269-4b6e-471a-8cca-b3f5813b1723}</UniqueIdentifier>
+    </Filter>
+  </ItemGroup>
+  <ItemGroup>
+    <ClInclude Include="User.h">
+      <Filter>People</Filter>
+    </ClInclude>
+    <ClInclude Include="Customer.h">
+      <Filter>People</Filter>
+    </ClInclude>
+    <ClInclude Include="Employee.h">
+      <Filter>People</Filter>
+    </ClInclude>
+    <ClInclude Include="DeliveryPerson.h">
+      <Filter>People</Filter>
+    </ClInclude>
+    <ClInclude Include="Manager.h">
+      <Filter>People</Filter>
+    </ClInclude>
+    <ClInclude Include="DrinkItem.h">
+      <Filter>Items</Filter>
+    </ClInclude>
+    <ClInclude Include="FoodItem.h">
+      <Filter>Items</Filter>
+    </ClInclude>
+    <ClInclude Include="MenuItem.h">
+      <Filter>Items</Filter>
+    </ClInclude>
+    <ClInclude Include="Restaurant.h">
+      <Filter>Business</Filter>
+    </ClInclude>
+    <ClInclude Include="Order.h">
+      <Filter>Business</Filter>
+    </ClInclude>
+  </ItemGroup>
+  <ItemGroup>
+    <ClCompile Include="Main.cpp">
+      <Filter>Program</Filter>
+    </ClCompile>
+    <ClCompile Include="MenuItem.cpp">
+      <Filter>Items</Filter>
+    </ClCompile>
+    <ClCompile Include="DrinkItem.cpp">
+      <Filter>Items</Filter>
+    </ClCompile>
+    <ClCompile Include="FoodItem.cpp">
+      <Filter>Items</Filter>
+    </ClCompile>
+    <ClCompile Include="User.cpp">
+      <Filter>People</Filter>
+    </ClCompile>
+    <ClCompile Include="Order.cpp">
+      <Filter>Business</Filter>
+    </ClCompile>
+    <ClCompile Include="Customer.cpp">
+      <Filter>People</Filter>
+    </ClCompile>
+    <ClCompile Include="Employee.cpp">
+      <Filter>People</Filter>
+    </ClCompile>
+    <ClCompile Include="DeliveryPerson.cpp">
+      <Filter>People</Filter>
+    </ClCompile>
+    <ClCompile Include="Manager.cpp">
+      <Filter>People</Filter>
+    </ClCompile>
+    <ClCompile Include="Restaurant.cpp">
+      <Filter>Business</Filter>
+    </ClCompile>
+  </ItemGroup>
+</Project>
