@@ -1,4 +1,5 @@
 #include <iostream>
+#include <iomanip>
 #include "Manager.h"
 #include "Restaurant.h"
 
@@ -16,8 +17,9 @@ Manager::~Manager()
 void Manager::DisplayInfo() const
 {
 	User::DisplayInfo();
-	std::cout << "Affiliated restaurant: " << GetRestaurant()->GetRestaurantName() << std::endl;
-	std::cout << "Status: Manager" << std::endl;
+	std::cout << std::left << std::setw(25) << "Affiliated restaurant: " << GetRestaurant()->GetRestaurantName() << std::endl;
+	std::cout << std::left << std::setw(25) << "Status: " << "Manager" << std::endl;
+	std::cout << std::setw(40) << std::setfill('-') << "" << std::setfill(' ') << std::endl;
 }
 
 void Manager::HireDeliveryPerson(DeliveryPerson* employee)

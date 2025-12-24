@@ -1,4 +1,5 @@
 #include <iostream>
+#include <iomanip>
 #include "User.h"
 
 User::User(int userId, const std::string& userName, const std::string& userEmail)
@@ -8,11 +9,10 @@ User::User(int userId, const std::string& userName, const std::string& userEmail
 	m_UserEmail = userEmail;
 }
 
-void User::DisplayInfo() const
-{
-	std::cout << "User Id: " << m_UserId << std::endl;
-	std::cout << "User Name: " << m_UserName << std::endl;
-	std::cout << "User Email: " << m_UserEmail << std::endl;
+void User::DisplayInfo() const {
+	std::cout << std::left << std::setw(15) << "User ID:" << m_UserId << "\n"
+		<< std::setw(15) << "Name:" << m_UserName << "\n"
+		<< std::setw(15) << "Email:" << m_UserEmail << std::endl;
 }
 
 int User::GetUserId() const

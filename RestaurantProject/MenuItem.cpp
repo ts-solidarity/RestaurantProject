@@ -1,4 +1,5 @@
 #include <iostream>
+#include <iomanip>
 #include "MenuItem.h"
 
 MenuItem::MenuItem(int itemId, const std::string& itemName, double itemPrice)
@@ -8,12 +9,11 @@ MenuItem::MenuItem(int itemId, const std::string& itemName, double itemPrice)
 	m_ItemPrice = itemPrice;
 }
 
-void MenuItem::DisplayInfo() const
-{
-	std::cout << "Item ID: " << m_ItemId << std::endl;
-	std::cout << "Item name: " << m_ItemName << std::endl;
-	std::cout << "Item price: " << m_ItemPrice << std::endl;
-	std::cout << "Item price (discount applied)" << m_ItemPrice - CalculateDiscount() << std::endl;
+void MenuItem::DisplayInfo() const {
+	std::cout << std::left << " [ID: " << std::setw(3) << m_ItemId << "] "
+		<< std::setw(20) << m_ItemName
+		<< " | Price: $" << std::fixed << std::setprecision(2) << std::setw(7) << m_ItemPrice
+		<< " | Disc. Price: $" << (m_ItemPrice - CalculateDiscount()) << std::endl;
 }
 
 int MenuItem::GetItemId() const

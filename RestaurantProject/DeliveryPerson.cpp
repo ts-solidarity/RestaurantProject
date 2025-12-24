@@ -1,4 +1,5 @@
 #include <iostream>
+#include <iomanip>
 #include "DeliveryPerson.h"
 #include "Restaurant.h"
 
@@ -17,8 +18,10 @@ DeliveryPerson::~DeliveryPerson()
 void DeliveryPerson::DisplayInfo() const
 {
 	User::DisplayInfo();
-	std::cout << "Affiliated restaurant: " << GetRestaurant()->GetRestaurantName() << std::endl;
-	std::cout << "Status: Delivery person" << std::endl;
+	std::cout << std::left << std::setw(25) << "Affiliated restaurant: " << GetRestaurant()->GetRestaurantName() << std::endl;
+	std::cout << std::left << std::setw(25) << "Status: " << "Delivery Person" << std::endl;
+	std::cout << std::left << std::setw(25) << "Task Status: " << (IsOrderComplete() ? "Available" : "On Delivery") << std::endl;
+	std::cout << std::setw(40) << std::setfill('-') << "" << std::setfill(' ') << std::endl;
 }
 
 Order* DeliveryPerson::GetCurrentOrder() const

@@ -274,105 +274,177 @@ void System::BuildMarket()
     }
 }
 
-void System::Run() {
-    int choice = -1;
+void System::Run()
+{
+	int choice = -1;
 
-    while (choice != 0) {
-        std::cout << "\n" << std::setw(40) << std::setfill('=') << "" << std::endl;
-        std::cout << std::setfill(' ') << std::setw(28) << std::right << "RESTAURANT MANAGEMENT" << std::endl;
-        std::cout << std::setw(40) << std::setfill('=') << "" << std::setfill(' ') << std::endl;
-        std::cout << "1. List All Restaurants" << std::endl;
-        std::cout << "2. View Restaurant Menu" << std::endl;
-        std::cout << "3. Create New Order" << std::endl;
-        std::cout << "4. View Order Status" << std::endl;
-        std::cout << "5. Manager Panel (Manage Items/Staff)" << std::endl;
-        std::cout << "0. Exit" << std::endl;
-        std::cout << "Selection: ";
+	while (choice != 0)
+	{
+		std::cout << "\n" << std::setw(50) << std::setfill('=') << "" << std::endl;
+		std::cout << std::setfill(' ') << std::setw(35) << std::right << "RESTAURANT MANAGEMENT SYSTEM" << std::endl;
+		std::cout << std::setw(50) << std::setfill('=') << "" << std::setfill(' ') << std::endl;
+		std::cout << " 1. [List] All Restaurants" << std::endl;
+		std::cout << " 2. [View] Restaurant Menu" << std::endl;
+		std::cout << " 3. [Order] Create New Order" << std::endl;
+		std::cout << " 4. [Status] View Order Status" << std::endl;
+		std::cout << " 5. [Admin] Manage Staff & Items" << std::endl;
+		std::cout << " 6. [Create] New Customer" << std::endl;
+		std::cout << " 0. [Exit]" << std::endl;
+		std::cout << "Selection: ";
 
-        if (!(std::cin >> choice)) {
-            std::cin.clear();
-            while (std::cin.get() != '\n');
-            continue;
-        }
+		if (!(std::cin >> choice))
+		{
+			std::cin.clear();
+			while (std::cin.get() != '\n');
+			continue;
+		}
 
-        if (choice == 1) {
-            std::cout << "\n" << std::left << std::setw(5) << "ID" << "Restaurant Name" << std::endl;
-            std::cout << std::setw(30) << std::setfill('-') << "" << std::setfill(' ') << std::endl;
-            for (int i = 0; i < m_RestaurantCount; i++) {
-                std::cout << std::left << std::setw(5) << i << m_Restaurants[i]->GetRestaurantName() << std::endl;
-            }
-        }
-        else if (choice == 2) {
-            int resId;
-            std::cout << "Enter Restaurant ID: ";
-            std::cin >> resId;
-            if (resId >= 0 && resId < m_RestaurantCount) {
-                std::cout << "\n--- Menu for " << m_Restaurants[resId]->GetRestaurantName() << " ---" << std::endl;
-                m_Restaurants[resId]->DisplayMenu();
-            }
-        }
-        else if (choice == 3) {
-            int custId, resId;
-            std::cout << "Customer ID (0-" << m_CustomerCount - 1 << "): ";
-            std::cin >> custId;
-            std::cout << "Restaurant ID: ";
-            std::cin >> resId;
+		Clear();
 
-            if (custId >= 0 && custId < m_CustomerCount && resId >= 0 && resId < m_RestaurantCount) {
-                Customer* customer = m_Customers[custId];
-                Restaurant* res = m_Restaurants[resId];
-                Order* order = customer->CreateOrder(res);
+		if (choice == 1)
+		{
+			std::cout << std::left << std::setw(10) << "ID" << std::setw(30) << "Restaurant Name" << std::endl;
+			std::cout << std::setw(40) << std::setfill('-') << "" << std::setfill(' ') << std::endl;
+			for (int i = 0; i < m_RestaurantCount; i++)
+			{
+				std::cout << std::left << std::setw(10) << i << m_Restaurants[i]->GetRestaurantName() << std::endl;
+			}
 
-                int itemId = -1;
-                while (true) {
-                    res->DisplayMenu();
-                    std::cout << "Enter Item ID to add (or 0 to finish): ";
-                    std::cin >> itemId;
-                    if (itemId == 0) break;
+			int detailId;
+			std::cout << "\nEnter Restaurant ID for full details (or -1 to return): ";
+			std::cin >> detailId;
 
-                    MenuItem* item = res->GetMenuItemById(itemId);
-                    if (item) {
-                        customer->AddItemToOrder(*item, order);
-                        std::cout << "Added: " << item->GetItemName() << std::endl;
-                    }
-                    else {
-                        std::cout << "Invalid Item ID!" << std::endl;
-                    }
-                }
-                std::cout << "Order placed successfully!" << std::endl;
-            }
-        }
-        else if (choice == 4) {
-            int custId;
-            std::cout << "Enter Customer ID: ";
-            std::cin >> custId;
-            if (custId >= 0 && custId < m_CustomerCount) {
-                Order* order = m_Customers[custId]->GetLatestOrder();
-                if (order) order->DisplayInfo();
-                else std::cout << "No active orders." << std::endl;
-            }
-        }
-        else if (choice == 5) {
-            int resId;
-            std::cout << "Enter Restaurant ID to Manage: ";
-            std::cin >> resId;
-            if (resId >= 0 && resId < m_RestaurantCount) {
-                Manager* mgr = m_Restaurants[resId]->GetManager();
-                std::cout << "\nManager: " << mgr->GetUserName() << std::endl;
-                std::cout << "1. Add Food Item\n2. Add Drink Item\nSelection: ";
-                int mgrSub;
-                std::cin >> mgrSub;
+			if (detailId >= 0 && detailId < m_RestaurantCount)
+			{
+				Clear();
+				std::cout << "--- " << m_Restaurants[detailId]->GetRestaurantName() << " Details ---\n";
+				m_Restaurants[detailId]->GetManager()->DisplayInfo();
+			}
+		}
+		else if (choice == 2)
+		{
+			std::cout << std::left << std::setw(10) << "ID" << std::setw(30) << "Restaurant Name" << std::endl;
+			std::cout << std::setw(40) << std::setfill('-') << "" << std::setfill(' ') << std::endl;
+			for (int i = 0; i < m_RestaurantCount; i++)
+			{
+				std::cout << std::left << std::setw(10) << i << m_Restaurants[i]->GetRestaurantName() << std::endl;
+			}
 
-                if (mgrSub == 1) {
-                    mgr->AddMenuItem(*CreateFoodItem("New Burger", 50.0));
-                    std::cout << "Item Added." << std::endl;
-                }
-                else if (mgrSub == 2) {
-                    mgr->AddMenuItem(*CreateDrinkItem("New Juice", 15.0));
-                    std::cout << "Item Added." << std::endl;
-                }
-            }
-        }
-    }
-    std::cout << "Exiting system..." << std::endl;
+			int resId;
+			std::cout << "\nEnter Restaurant ID: ";
+			std::cin >> resId;
+
+			if (resId >= 0 && resId < m_RestaurantCount)
+			{
+				std::cout << "\n--- Menu for " << m_Restaurants[resId]->GetRestaurantName() << " ---" << std::endl;
+				m_Restaurants[resId]->DisplayMenu();
+			}
+		}
+		else if (choice == 3)
+		{
+			std::cout << std::left << std::setw(10) << "ID" << std::setw(30) << "Customer Name" << std::endl;
+			std::cout << std::setw(40) << std::setfill('-') << "" << std::setfill(' ') << std::endl;
+			for (int i = 0; i < m_CustomerCount; i++)
+			{
+				std::cout << std::left << std::setw(10) << i << m_Customers[i]->GetUserName() << std::endl;
+			}
+
+			int custId, resId;
+			std::cout << "\nSelect Customer ID: ";
+			std::cin >> custId;
+			std::cout << "Select Restaurant ID: ";
+			std::cin >> resId;
+
+			if (custId >= 0 && custId < m_CustomerCount && resId >= 0 && resId < m_RestaurantCount)
+			{
+				Customer* customer = m_Customers[custId];
+				Restaurant* res = m_Restaurants[resId];
+				Order* order = customer->CreateOrder(res);
+
+				int itemId = -1;
+				while (true)
+				{
+					std::cout << "\n--- Adding items to order for " << customer->GetUserName() << " ---\n";
+					res->DisplayMenu();
+					std::cout << "Enter Item ID (0 to finish): ";
+					std::cin >> itemId;
+					if (itemId == 0) break;
+
+					MenuItem* item = res->GetMenuItemById(itemId);
+					if (item)
+					{
+						customer->AddItemToOrder(*item, order);
+						std::cout << "Added: " << item->GetItemName() << std::endl;
+					}
+				}
+				std::cout << "Order placed successfully!" << std::endl;
+			}
+		}
+		else if (choice == 4)
+		{
+			int custId;
+			std::cout << "Enter Customer ID: ";
+			std::cin >> custId;
+			if (custId >= 0 && custId < m_CustomerCount)
+			{
+				Order* order = m_Customers[custId]->GetLatestOrder();
+				if (order) order->DisplayInfo();
+				else std::cout << "No active orders." << std::endl;
+			}
+		}
+		else if (choice == 5)
+		{
+			std::cout << "--- Management Panel ---\n";
+			std::cout << "1. Hire Staff\n2. Add Menu Item\n3. View Full Restaurant Stats\nSelection: ";
+			int adminChoice; std::cin >> adminChoice;
+
+			int resId;
+			std::cout << "Target Restaurant ID: "; std::cin >> resId;
+			if (resId >= 0 && resId < m_RestaurantCount)
+			{
+				if (adminChoice == 1)
+				{
+					std::string name, email; int type;
+					std::cout << "Type (1: Manager, 2: Courier): "; std::cin >> type;
+					std::cout << "Name: "; std::cin.ignore(); std::getline(std::cin, name);
+					std::cout << "Email: "; std::getline(std::cin, email);
+					if (type == 1) m_Restaurants[resId]->SetManager(CreateManager(name, email, m_Restaurants[resId]));
+					else m_Restaurants[resId]->AddEmployee(CreateDeliveryPerson(name, email, m_Restaurants[resId]));
+				}
+				else if (adminChoice == 2)
+				{
+					std::string name; double price; int type;
+					std::cout << "Type (1: Food, 2: Drink): "; std::cin >> type;
+					std::cout << "Name: "; std::cin.ignore(); std::getline(std::cin, name);
+					std::cout << "Price: "; std::cin >> price;
+					if (type == 1) m_Restaurants[resId]->AddMenuItem(*CreateFoodItem(name, price));
+					else m_Restaurants[resId]->AddMenuItem(*CreateDrinkItem(name, price));
+				}
+				else if (adminChoice == 3)
+				{
+					Clear();
+					std::cout << "--- MANAGER VIEW: " << m_Restaurants[resId]->GetRestaurantName() << " ---\n";
+					m_Restaurants[resId]->GetManager()->DisplayInfo();
+					std::cout << "\nCOURIER STAFF:\n";
+					m_Restaurants[resId]->DisplayMenu();
+				}
+			}
+		}
+		else if (choice == 6)
+		{
+			std::string name, email, addr;
+			std::cout << "New Customer Name: "; std::cin.ignore(); std::getline(std::cin, name);
+			std::cout << "Email: "; std::getline(std::cin, email);
+			std::cout << "Address: "; std::getline(std::cin, addr);
+			CreateCustomer(name, email, addr);
+			std::cout << "Customer created successfully!\n";
+		}
+	}
+	std::cout << "Exiting system..." << std::endl;
+}
+
+void System::Clear() const
+{
+    for (int i = 0; i < 50; ++i) 
+        std::cout << "\n";
 }

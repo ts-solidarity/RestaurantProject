@@ -32,6 +32,7 @@ public:
 
 	void BuildMarket();
 	void Run();
+	void Clear() const;
 
 private:
 

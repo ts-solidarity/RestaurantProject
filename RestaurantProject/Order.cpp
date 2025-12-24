@@ -1,4 +1,5 @@
 #include <iostream>
+#include <iomanip>
 #include "Order.h"
 #include "Customer.h"
 #include "DeliveryPerson.h"
@@ -161,24 +162,23 @@ Order::Situation Order::GetSituation() const
 	return m_Situation;
 }
 
-void Order::DisplayInfo() const
-{
-	std::cout << "**************************************" << std::endl;
-	std::cout << "Order Information:" << std::endl;
-	std::cout << "Customer name: " << m_Customer->GetUserName() << std::endl;
-	std::cout << "Delivery person name: " << m_DeliveryPerson->GetUserName() << std::endl;
-	std::cout << "Order items:" << std::endl;
+void Order::DisplayInfo() const {
+	std::cout << "\n" << std::setw(40) << std::setfill('*') << "" << std::endl;
+	std::cout << std::setfill(' ') << " RECEIPT - " << m_Restaurant->GetRestaurantName() << std::endl;
+	std::cout << " Customer: " << m_Customer->GetUserName() << "\n";
+	std::cout << " Courier:  " << m_DeliveryPerson->GetUserName() << "\n";
+	std::cout << std::setw(40) << std::setfill('-') << "" << std::setfill(' ') << std::endl;
 
-	for (int i = 0; i < m_ItemCount; i++)
-	{
+	for (int i = 0; i < m_ItemCount; i++) {
 		m_OrderedItems[i]->DisplayInfo();
 	}
 
-	std::cout << "Total price before discount: " << CalculateTotalPrice() << std::endl;
-	std::cout << "Total discount: " << CalculateTotalDiscount() << std::endl;
-	std::cout << "Final price: " << FinalPrice() << std::endl;
-	std::cout << "Order situation: " << GetSituationString() << std::endl;
-	std::cout << "**************************************" << std::endl;
+	std::cout << std::setw(40) << std::setfill('-') << "" << std::setfill(' ') << std::endl;
+	std::cout << std::right << std::setw(30) << "Subtotal: " << "$" << CalculateTotalPrice() << "\n";
+	std::cout << std::setw(30) << "Discount: " << "-$" << CalculateTotalDiscount() << "\n";
+	std::cout << std::setw(30) << "TOTAL: " << "$" << FinalPrice() << "\n";
+	std::cout << " Status: [" << GetSituationString() << "]\n";
+	std::cout << std::setw(40) << std::setfill('*') << "" << std::endl;
 }
 
 double Order::CalculateTotalPrice() const
