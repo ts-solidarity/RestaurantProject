@@ -5,4 +5,5 @@ int main()
 {
 	System system;
 	system.BuildMarket();
+	system.Run();
 }

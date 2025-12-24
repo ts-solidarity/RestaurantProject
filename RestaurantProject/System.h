@@ -31,6 +31,7 @@ public:
 	void DeleteCustomer(Customer* customer);
 
 	void BuildMarket();
+	void Run();
 
 private:
 
